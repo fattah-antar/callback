@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: callback
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: callback
+  template:
+    metadata:
+      labels:
+        app: callback
+    spec:
+      containers:
+        - name: callback
+          image: localhost:5000/callback:latest
+          ports:
+            - containerPort: 8093
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: callback
+spec:
+  selector:
+    app: callback
+  ports:
+  - name: callback
+    nodePort: 30021
+    port: 8093
+    protocol: TCP
+    targetPort: 8093
+  type: NodePort

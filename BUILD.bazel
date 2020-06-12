@@ -1,0 +1,15 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+#load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
+
+gazelle(
+    name = "callback",
+    # you project name here!
+    prefix = "github.com/brendanjryan/groupcache-bazel",
+)
+
+container_image(
+    name = "callback_image",
+    base = ":gcr.io/distroless/base",
+    ports = ["8093"],
+)
