@@ -14,7 +14,7 @@ type message struct {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello %s!", r.URL.Path[1:])
+	fmt.Fprintf(w, "Hello From OpenShift %s!", r.URL.Path[1:])
 	//fmt.Println("RESTfulServ. on:8093, Controller:", r.URL.Path[1:])
 
 	var msg message
